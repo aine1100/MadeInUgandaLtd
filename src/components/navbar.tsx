@@ -37,7 +37,7 @@ export default function Navbar() {
   return (
     <div className="flex flex-col mx-auto container gap-0 sticky top-0">
       {/* Top bar */}
-      <div className="bg-primary-color mx-auto container px-10 py-2 flex justify-between items-center text-white font-bold">
+      <div className="bg-primary-color mx-auto container px-10 py-2 flex justify-between items-center text-white font-medium">
         <p>Call us for any help : +250 000 000 000</p>
         Made in Uganda Ltd
         <div className="flex justify-center items-center gap-5">

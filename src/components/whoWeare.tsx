@@ -32,7 +32,7 @@ export default function WhoWeAre() {
                             <iframe
                                 src={item.video}
                                 title={item.name}
-                                className="w-full h-[200px] rounded-lg"
+                                className="w-full h-[180px] rounded-lg"
                                 frameBorder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                 allowFullScreen
