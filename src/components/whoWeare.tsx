@@ -28,7 +28,7 @@ export default function WhoWeAre() {
                 </p>
                 <div className="flex items-center justify-between gap-10">
                     {videos.map((item, index) => (
-                        <div key={index} className="flex flex-col gap-5 w-[300px] h-[300px] shadow-sm shadow-gray-200 rounded-lg p-2">
+                        <div key={index} className="flex flex-col gap-5 w-[300px] h-[310px] hover:shadow-md  transition-all  duration-300 shadow-sm shadow-gray-200 rounded-lg p-2">
                             <iframe
                                 src={item.video}
                                 title={item.name}

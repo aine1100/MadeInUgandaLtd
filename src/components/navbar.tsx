@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
 
 export default function Navbar() {
@@ -13,7 +13,7 @@ export default function Navbar() {
 
   const navbar = [
     { link: "/", name: "Home" },
-    { link: "#about", name: "About" },
+    { link: "/about", name: "About" },
     { link: "#services", name: "Services" },
     { link: "#products", name: "Products" },
     { link: "#contact", name: "Contact" },
@@ -33,6 +33,11 @@ export default function Navbar() {
       link: "#",
     },
   ];
+
+  // Synchronize active link with the current URL
+  useEffect(() => {
+    setActiveLink(window.location.pathname);
+  }, []);
 
   return (
     <div className="flex flex-col mx-auto container gap-0 sticky top-0">
@@ -69,7 +74,9 @@ export default function Navbar() {
                 href={item.link}
                 onClick={() => setActiveLink(item.link)}
                 className={`${
-                  activeLink === item.link ? "text-green-600 font-bold" : "text-gray-700"
+                  activeLink === item.link
+                    ? "text-green-600 font-bold"
+                    : "text-gray-700"
                 } hover:text-green-600`}
               >
                 {item.name}
