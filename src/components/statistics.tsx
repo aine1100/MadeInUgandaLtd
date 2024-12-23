@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-interface numberProps{
-    targetNumber: number;
-}
+
+type AnimatedNumberProps = {
+    targetNumber: number; // Declare the datatype for targetNumber as number
+};
 
 export default function PeopleNumber() {
     const numbers = [
@@ -15,13 +16,12 @@ export default function PeopleNumber() {
         },
         {
             number: 100000, // Target number
-
             title: "Products",
         },
     ];
 
     // Function to handle the animation of numbers
-    const AnimatedNumber = ({ targetNumber }) => {
+    const AnimatedNumber = ({ targetNumber }: AnimatedNumberProps) => {
         const [currentNumber, setCurrentNumber] = useState(0);
 
         useEffect(() => {
