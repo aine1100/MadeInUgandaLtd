@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaHeart, FaSearch } from "react-icons/fa";
+import { FaCartShopping } from "react-icons/fa6"; // Ensure this package is installed
 
-export default function Navbar() {
+export default function ProductNavbar() {
   const [activeLink, setActiveLink] = useState("/"); // Default active link
 
   const icons = [
@@ -18,6 +20,24 @@ export default function Navbar() {
     { link: "/products", name: "Products" },
     { link: "#contact", name: "Contact" },
   ];
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      alert(`Searching for: ${searchQuery}`);
+  };
+
+  const productTypes = [
+      { title: "Fresh Products" },
+      { title: "Non-Fresh Products" },
+      { title: "HandCrafted Products" },
+      { title: "Exports Products" },
+  ];
+
+  const icon = [<FaCartShopping />, <FaHeart />];
+
+
 
   const button = [
     {
@@ -94,6 +114,44 @@ export default function Navbar() {
           ))}
         </div>
       </div>
+      <div className="flex bg-primary-color h-[60px] px-10  items-center justify-between fixed top-[103px]  left-0 w-full z-50 shadow-lg">
+                <div className="flex gap-5 text-white">
+                    {productTypes.map((item, index) => (
+                        <a
+                            key={index}
+                            href="#"
+                            className="text-sm text-white hover:text-md"
+                        >
+                            {item.title}
+                        </a>
+                    ))}
+                </div>
+
+                {/* Search Form */}
+                <form onSubmit={handleSearch} className="flex items-center">
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search products..."
+                        className="px-4 py-2 border border-gray-300 rounded-l-md focus:outline-none focus:border-[1.5px] focus:border-[#0086AD] w-[300px]"
+                    />
+                    <button
+                        type="submit"
+                        className="bg-white px-4 h-[41.2px] -mt-[0.1px] text-primary-color rounded-r-md hover:bg-primary-color hover:text-white transition-all"
+                    >
+                        <FaSearch />
+                    </button>
+                </form>
+
+                <div className="flex gap-8">
+                    {icon.map((icon, index) => (
+                        <p key={index} className="text-white text-[25px]">
+                            {icon}
+                        </p>
+                    ))}
+                </div>
+            </div>
     </div>
   );
 }
