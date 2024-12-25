@@ -16,7 +16,7 @@ export default function Navbar() {
     { link: "/about", name: "About" },
     { link: "/service", name: "Services" },
     { link: "/products", name: "Products" },
-    { link: "#contact", name: "Contact" },
+    { link: "/contact", name: "Contact" },
   ];
 
   const button = [
