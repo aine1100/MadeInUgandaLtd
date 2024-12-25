@@ -25,8 +25,8 @@ export default function OurProducts() {
             <h1 className="text-2xl font-bold text-gray-600">Our Products</h1>
             <div className="flex gap-10 items-center justify-center">
             {products.map((item, index) => (
-                        <div key={index} className="flex flex-col gap-5 w-[300px] h-[350px] shadow-sm shadow-gray-200 rounded-lg p-2">
-                            <img src={item.image} alt="" className="w-full h-[170px] rounded-lg" />
+                        <div key={index} className="flex flex-col gap-5 w-[300px] h-[450px] shadow-sm shadow-gray-200 rounded-lg p-2">
+                            <img src={item.image} alt="" className="w-full h-[150px] rounded-lg" />
                             <div className="flex flex-col gap-2  items-center justify-center">
                             <p className="text-gray-600 text-center font-semibold ">{item.title}</p>
                             <p className="text-gray-500 text-center w-[280px]">{item.desc}</p>
