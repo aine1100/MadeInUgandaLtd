@@ -44,13 +44,13 @@ export default function ProductNavbar() {
       name: "Login",
       className:
         "bg-primary-color px-6 flex items-center justify-center py-2 rounded-md text-white ",
-      link: "#",
+      link: "/login",
     },
     {
       name: "Register",
       className:
         "border-[1.5px] border-primary-color px-6 flex items-center justify-center py-2 rounded-md text-primary-color ",
-      link: "#",
+      link: "/register",
     },
   ];
 
