@@ -14,9 +14,8 @@ type ProductCategories = {
 
 
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import { FaHeart, FaSearch } from "react-icons/fa";
+import {  FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
-import { FaTimes } from "react-icons/fa";
 export default function ProductPage() {
     const images = ["/agr.webp", "/market.webp", "/uganda.jpg"];
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
