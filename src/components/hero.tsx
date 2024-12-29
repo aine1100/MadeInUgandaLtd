@@ -6,13 +6,13 @@ export default function Hero() {
             name: "Shop Now",
             className:
                 "bg-primary-color px-10 flex items-center justify-center py-2 rounded-md text-white ",
-            link: "#",
+            link: "/products",
         },
         {
             name: "Join as a seller",
             className:
                 "border-[1.5px] border-primary-color px-10 flex items-center justify-center py-2 rounded-md text-primary-color ",
-            link: "#",
+            link: "/register",
         },
     ];
 

@@ -1,7 +1,7 @@
 export default function Register(){
     const inputData = [
         {
-            name: "Full Name",
+            name: "Full Name Or Company Name",
             className: "h-10",
             type: "text",
         },
