@@ -8,6 +8,7 @@ import Contact from "./pages/contact";
 import Register from "./pages/register";
 import Login from "./pages/login";
 import CartPage from "./components/cartPage";
+import Dashboard from "./pages/dashboard";
 
 const App: React.FC = () => {
   return (
@@ -21,6 +22,8 @@ const App: React.FC = () => {
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/cart" element={<CartPage/>} />
+        <Route path="/Dashboard" element={<Dashboard/>} />
+
 
 
 
