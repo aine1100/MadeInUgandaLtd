@@ -90,7 +90,7 @@ src
 
 2. Navigate to the project directory:
    ```bash
-   cd madeinuganda-frontend
+   cd frontend
    ```
 
 3. Install dependencies:
