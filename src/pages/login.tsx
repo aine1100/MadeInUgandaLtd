@@ -47,7 +47,7 @@ export default function Login() {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3000/auth/login", formData);
+      const response = await axios.post("https://madeinugandabackend-2.onrender.com", formData);
       toast.success(response.data.message || "Login successful!");
       setTimeout(() => {
         navigate("/Dashboard");
