@@ -65,7 +65,7 @@ export default function Register() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://madeinugandabackend-2.onrender.com", formData);
+      const response = await axios.post("http://localhost:3000/auth/signup", formData);
       toast.success(response.data.message || "User registered successfully");
       setTimeout(() => {
         navigate("/login");
