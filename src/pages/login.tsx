@@ -48,6 +48,8 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3000/auth/login", formData);
+      const token=response.data.token;
+      localStorage.setItem("token",token);
       toast.success(response.data.message || "Login successful!");
       setTimeout(() => {
         navigate("/Dashboard");
