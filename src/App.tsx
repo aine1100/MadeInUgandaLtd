@@ -10,6 +10,7 @@ import Login from "./pages/login";
 import CartPage from "./components/cartPage";
 import Dashboard from "./pages/dashboard";
 import ProductsPage from "./pages/products";
+import AnalyticsPage from "./pages/analytics";
 const App: React.FC = () => {
   return (
     <Router>
@@ -24,6 +25,8 @@ const App: React.FC = () => {
         <Route path="/cart" element={<CartPage/>} />
         <Route path="/Dashboard" element={<Dashboard/>} />
         <Route path="/sellerProducts" element={<ProductsPage/>} />
+        <Route path="/analytics" element={<AnalyticsPage/>} />
+
 
         
 

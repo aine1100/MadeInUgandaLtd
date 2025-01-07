@@ -1,8 +1,8 @@
 import Header from "../components/seller/header";
-import ProductList from "../components/seller/productlist";
+import SalesChart from "../components/seller/salesChart";
 import Sidebar from "../components/seller/sidebar";
 
-export default function ProductsPage(){
+export default function AnalyticsPage(){
 
     return(
         <div className="flex z-50">
@@ -10,8 +10,9 @@ export default function ProductsPage(){
                <div className="flex-1">
                <Header/>
                <div className="px-10 py-5 gap-5 flex flex-col">
-                <h2 className="text-xl font-semibold text-primary-color">Your Products</h2>
-                <ProductList/>
+                <h2 className="text-xl font-semibold text-primary-color">Analytic Page</h2>
+                
+                <SalesChart/>
 
 
 

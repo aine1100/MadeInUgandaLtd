@@ -5,11 +5,10 @@ import SalesChart from "../components/seller/salesChart";
 import Sidebar from "../components/seller/sidebar";
 
 export default function Dashboard(){
-    const activeTab="/Dashboard";
 
     return(
         <div className="flex z-50">
-            <Sidebar activeTab={activeTab} onTabChange={() => {}}/>
+            <Sidebar  onTabChange={() => {}}/>
                <div className="flex-1">
                <Header/>
                <div className="px-10 py-5 gap-5 flex flex-col">

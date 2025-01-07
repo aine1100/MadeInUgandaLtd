@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
 
 interface Product {
@@ -20,6 +21,26 @@ export default function ProductPage() {
     const images = ["/agr.webp", "/market.webp", "/uganda.jpg"];
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [cart, setCart] = useState<Product[]>([]);
+    const [product,setProducts]=useState<any[]>();
+    
+    //fetch displayed products from the backend 
+    useEffect(()=>{
+        const fetchProducts=async()=>{
+            try{
+                const response=await axios.get("http://localhost:3000/products/product",);
+                setProducts(response.data)
+                console.log(response.data)
+
+            
+            }catch(err){
+                console.error('Failed to fetch products', err);
+            }
+            
+;        }
+        fetchProducts();
+
+    },[])
+
 
     // Fetch cart from localStorage on mount
     useEffect(() => {

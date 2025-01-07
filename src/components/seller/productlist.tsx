@@ -81,7 +81,7 @@ const ProductList: React.FC = () => {
         window.location.href = '/login'; // Redirect to login page if no token
         return;
       }
-    //   console.log(products)
+      //   console.log(products)
 
       try {
         const response = await axios.get('http://localhost:3000/products/', {
@@ -89,7 +89,7 @@ const ProductList: React.FC = () => {
             Authorization: `${token}`, // Send token to authenticate the user
           },
         });
-        setProducts(response.data); 
+        setProducts(response.data);
         // Set products from the response
         console.log(products)
       } catch (err) {
@@ -162,20 +162,20 @@ const ProductList: React.FC = () => {
   };
 
   // Handle product deletion
- 
+
   // Handle product update (this can be expanded with modal or form for updating)
- // Handle product update (set selected product data to modal)
-const handleUpdateProduct = (product: any) => {
-    setNewProduct({ ...product, id: product.id });
-     // Include the product ID for update
-     console.log(product.id)
+  // Handle product update (set selected product data to modal)
+  const handleUpdateProduct = (product: any) => {
+    setNewProduct({ ...product, id: product._id });
+    // Include the product ID for update
+    console.log(product.id)
     setShowUpdateModal(true);
   };
-  
+
   // Handle update submission
   const handleSubmitUpdate = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
+
     const formData = new FormData();
     formData.append('name', newProduct.name);
     formData.append('category', newProduct.category);
@@ -184,13 +184,13 @@ const handleUpdateProduct = (product: any) => {
     if (newProduct.image) {
       formData.append('image', newProduct.image);
     }
-  
+
     const token = localStorage.getItem('token');
     if (!token) {
       toast.error('No token found, please log in!');
       return;
     }
-  
+
     try {
       const response = await axios.put(`http://localhost:3000/products/updateProduct/${newProduct.id}`, formData, {
         headers: {
@@ -208,7 +208,7 @@ const handleUpdateProduct = (product: any) => {
       toast.error(err.response?.data?.message || 'Error updating product');
     }
   };
-  
+
   // Handle product deletion
   const handleDeleteProduct = async (id: string) => {
     const token = localStorage.getItem('token');
@@ -216,7 +216,7 @@ const handleUpdateProduct = (product: any) => {
       toast.error('No token found, please log in!');
       return;
     }
-  
+
     try {
       const response = await axios.delete(`http://localhost:3000/products/deleteProduct/${id}`, {
         headers: {
@@ -229,7 +229,7 @@ const handleUpdateProduct = (product: any) => {
       toast.error('Error deleting product');
     }
   };
-  
+
   const imageTemplate = (rowData: any) => {
     const baseURL = 'http://localhost:3000/uploads/';
     return rowData.image ? (
@@ -255,8 +255,7 @@ const handleUpdateProduct = (product: any) => {
       {/* Product Table */}
       <div className="card bg-white shadow-sm rounded-lg p-5 overflow-hidden">
         <DataTable value={products} selection={selectedProduct} onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" tableStyle={{ minWidth: '60rem' }}>
-            
-          <Column field="_id" header="ID" />
+
           <Column field="name" header="Name" />
           <Column field="price" header="Price (Dollars)" />
           <Column field="category" header="Category" />
@@ -268,7 +267,7 @@ const handleUpdateProduct = (product: any) => {
                 <button className="text-primary-color" onClick={() => handleUpdateProduct(rowData)}>
                   <FaPen />
                 </button>
-                <button className="text-red-600" onClick={() => handleDeleteProduct(rowData.id)}>
+                <button className="text-red-600" onClick={() => handleDeleteProduct(rowData._id)}>
                   <FaTrash />
                 </button>
               </div>
@@ -300,7 +299,7 @@ const handleUpdateProduct = (product: any) => {
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium">Category</label>
-                <CustomDropdown options={['Category 1', 'Category 2']} value={newProduct.category} onChange={(value) => setNewProduct({ ...newProduct, category: value })} />
+                <CustomDropdown options={['Fresh Products', 'Exported Products', "Handcrafted Products", "Non-Fresh Products"]} value={newProduct.category} onChange={(value) => setNewProduct({ ...newProduct, category: value })} />
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium">Price</label>
@@ -321,13 +320,19 @@ const handleUpdateProduct = (product: any) => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium">Image</label>
+                <label
+                  htmlFor="fileInput"
+                  className="cursor-pointer w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-center inline-block  transition"
+                >
+                  Upload Image
+                </label>
                 <input
+                  id="fileInput"
                   type="file"
+                  accept="image/*"
                   onChange={handleImageChange}
-                  className="w-full px-4 py-2 text-sm border rounded-md"
-                />
-                {imagePreview && (
+                  className="hidden"
+                />   {imagePreview && (
                   <div className="mt-4">
                     <img src={imagePreview} alt="Preview" className="w-20 h-20 object-cover rounded-lg" />
                   </div>
@@ -340,6 +345,10 @@ const handleUpdateProduct = (product: any) => {
               </div>
             </form>
           </div>
+
+
+
+
         </div>
       )}
 
@@ -365,7 +374,7 @@ const handleUpdateProduct = (product: any) => {
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium">Category</label>
-                <CustomDropdown options={['Category 1', 'Category 2']} value={newProduct.category} onChange={(value) => setNewProduct({ ...newProduct, category: value })} />
+                <CustomDropdown options={['Fresh Products', 'Exported Products', "Handcrafted Products", "Non-Fresh Products"]} value={newProduct.category} onChange={(value) => setNewProduct({ ...newProduct, category: value })} />
               </div>
               <div className="mb-4">
                 <label className="block text-sm font-medium">Price</label>
@@ -386,12 +395,20 @@ const handleUpdateProduct = (product: any) => {
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-sm font-medium">Image</label>
+                <label
+                  htmlFor="fileInput"
+                  className="cursor-pointer w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-center inline-block  transition"
+                >
+                  Upload Image
+                </label>
                 <input
+                  id="fileInput"
                   type="file"
+                  accept="image/*"
                   onChange={handleImageChange}
-                  className="w-full px-4 py-2 text-sm border rounded-md"
+                  className="hidden"
                 />
+
                 {imagePreview && (
                   <div className="mt-4">
                     <img src={imagePreview} alt="Preview" className="w-20 h-20 object-cover rounded-lg" />
@@ -407,7 +424,7 @@ const handleUpdateProduct = (product: any) => {
           </div>
         </div>
       )}
-      
+
       <ToastContainer />
     </div>
   );
