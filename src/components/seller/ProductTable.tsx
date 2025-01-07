@@ -78,7 +78,7 @@ const ProductTable: React.FC = () => {
             Authorization: `${token}`, // Send token to authenticate the user
           },
         });
-        setProducts(response.data); // Set products from the response
+        setProducts(response.data.slice(0,4)); // Set products from the response
       } catch (err) {
         console.error('Failed to fetch products', err);
       }
@@ -170,7 +170,7 @@ const ProductTable: React.FC = () => {
   };
 
   return (
-    <div className="container mx-auto pr-10 py-6">
+    <div className="container mx-auto pr-10 py-6 ">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-xl font-semibold text-gray-700">Products</h1>
         <button
@@ -191,8 +191,12 @@ const ProductTable: React.FC = () => {
           <Column field="quantity" header="Quantity" />
           <Column body={imageTemplate} header="Image" />
         </DataTable>
+         <div className='flex justify-end items-end p-3'>
+        <a href="/" className='text-primary-color text-md font-medium'>See more Products</a>
       </div>
 
+      </div>
+     
       {/* Modal for Adding New Product */}
       {showModal && (
         <form onSubmit={handleAddProduct} className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">

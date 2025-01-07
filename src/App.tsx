@@ -9,7 +9,7 @@ import Register from "./pages/register";
 import Login from "./pages/login";
 import CartPage from "./components/cartPage";
 import Dashboard from "./pages/dashboard";
-
+import ProductsPage from "./pages/products";
 const App: React.FC = () => {
   return (
     <Router>
@@ -23,6 +23,9 @@ const App: React.FC = () => {
         <Route path="/login" element={<Login/>} />
         <Route path="/cart" element={<CartPage/>} />
         <Route path="/Dashboard" element={<Dashboard/>} />
+        <Route path="/sellerProducts" element={<ProductsPage/>} />
+
+        
 
 
 

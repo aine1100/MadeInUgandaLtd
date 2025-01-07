@@ -11,7 +11,7 @@ import {
 
 const TABS = [
   { label: 'Dashboard', icon: FiGrid, href: '/Dashboard' },
-  { label: 'Products', icon: FiList, href: '/seller/product' },
+  { label: 'Products', icon: FiList, href: '/sellerProducts' },
   {label:'Analytics',icon:FaChartSimple ,href:'/seller/reports'}
 ];
 
