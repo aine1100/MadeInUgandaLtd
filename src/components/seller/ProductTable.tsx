@@ -4,7 +4,7 @@ import { Column } from 'primereact/column';
 import { FaX } from 'react-icons/fa6';
 import { FaCaretDown } from 'react-icons/fa';
 import axios from 'axios';
-import { toast ,ToastContainer} from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // Custom Dropdown Component
@@ -71,7 +71,7 @@ const ProductTable: React.FC = () => {
         window.location.href = '/login'; // Redirect to login page if no token
         return;
       }
-  
+
       try {
         const response = await axios.get('http://localhost:3000/products/', {
           headers: {
@@ -85,7 +85,7 @@ const ProductTable: React.FC = () => {
     };
     fetchProducts();
   }, []);
-  
+
   // Modal state and new product state
   const [showModal, setShowModal] = useState(false);
   const [newProduct, setNewProduct] = useState<any>({
@@ -160,8 +160,10 @@ const ProductTable: React.FC = () => {
   };
 
   const imageTemplate = (rowData: any) => {
+    const baseURL = 'http://localhost:3000/uploads/';
     return rowData.image ? (
-      <img src={rowData.image} alt="Product" className="w-20 h-20 object-cover rounded-lg" />
+      console.log(rowData.image),
+      <img src={`${baseURL}${rowData.image}`} alt="Product" className="w-20 h-20 object-cover rounded-lg" />
     ) : (
       <span>No Image</span>
     );
@@ -184,7 +186,7 @@ const ProductTable: React.FC = () => {
       <div className="card bg-white shadow-sm rounded-lg p-5 overflow-hidden">
         <DataTable value={products} selection={selectedProduct} onSelectionChange={(e) => setSelectedProduct(e.value)} dataKey="id" tableStyle={{ minWidth: '60rem' }}>
           <Column field="name" header="Name" />
-          <Column field="price" header="Price" />
+          <Column field="price" header="Price (Dollars)" />
           <Column field="category" header="Category" />
           <Column field="quantity" header="Quantity" />
           <Column body={imageTemplate} header="Image" />
@@ -233,12 +235,31 @@ const ProductTable: React.FC = () => {
               />
 
               {/* File input for image */}
-              <input type="file" accept="image/*" onChange={handleImageChange} className="w-full" />
-              {imagePreview && (
-                <div className="mt-4">
-                  <img src={imagePreview} alt="Preview" className="w-full h-[150px] object-cover rounded-lg" />
-                </div>
-              )}
+              <div className="w-full ">
+                <label
+                  htmlFor="fileInput"
+                  className="cursor-pointer w-full bg-blue-600 text-white px-4 py-2 rounded-lg text-center inline-block  transition"
+                >
+                  Upload Image
+                </label>
+                <input
+                  id="fileInput"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  className="hidden"
+                />
+                {imagePreview && (
+                  <div className="mt-4">
+                    <img
+                      src={imagePreview}
+                      alt="Preview"
+                      className="w-full h-[150px] object-cover rounded-lg"
+                    />
+                  </div>
+                )}
+              </div>
+
 
               <button
                 type="submit"
@@ -250,7 +271,7 @@ const ProductTable: React.FC = () => {
           </div>
         </form>
       )}
-            <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar />
     </div>
   );
 };

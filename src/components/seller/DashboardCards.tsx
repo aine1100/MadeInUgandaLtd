@@ -1,8 +1,15 @@
+import  { useState, useEffect} from 'react';
+
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export default function ProductCards(){
+      const [products, setProducts] = useState<any[]>([]); // Array of products
+    
     const cards=[
         {
             title:"Total Products",
-            amount:500
+            amount:products.length
         },
         {
             title:"Total Sales",
@@ -13,6 +20,30 @@ export default function ProductCards(){
             amount:500
         }
     ]
+    useEffect(() => {
+        const fetchProducts = async () => {
+          const token = localStorage.getItem('token');
+          if (!token) {
+            toast.error('No token found, please log in!');
+            window.location.href = '/login'; // Redirect to login page if no token
+            return;
+          }
+    
+          try {
+            const response = await axios.get('http://localhost:3000/products/', {
+              headers: {
+                Authorization: `${token}`, // Send token to authenticate the user
+              },
+            });
+            setProducts(response.data);
+             console.log(response.data.length)
+          } catch (err) {
+            console.error('Failed to fetch products', err);
+          }
+        };
+        fetchProducts();
+      }, []);
+    
     return(
         <div className="flex gap-10 ">
             {
