@@ -15,31 +15,32 @@ type ProductCategories = {
 
 
 import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp } from "react-icons/fa";
-import {  FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { FaCartShopping } from "react-icons/fa6";
 export default function ProductPage() {
     const images = ["/agr.webp", "/market.webp", "/uganda.jpg"];
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [cart, setCart] = useState<Product[]>([]);
-    const [product,setProducts]=useState<any[]>();
-    
+    const [product, setProducts] = useState([]);
+
     //fetch displayed products from the backend 
-    useEffect(()=>{
-        const fetchProducts=async()=>{
-            try{
-                const response=await axios.get("http://localhost:3000/products/product",);
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const response = await axios.get("http://localhost:3000/products/product",);
                 setProducts(response.data)
                 console.log(response.data)
 
-            
-            }catch(err){
+
+            } catch (err) {
                 console.error('Failed to fetch products', err);
             }
-            
-;        }
+
+            ;
+        }
         fetchProducts();
 
-    },[])
+    }, [])
 
 
     // Fetch cart from localStorage on mount
@@ -74,28 +75,28 @@ export default function ProductPage() {
     }, [images.length]);
 
     // Define product categories and their products with types
-    const products: ProductCategories = {
-        "Fresh Products": [
-            { name: "Fresh Mango", price: 10, image: "/mango.webp" },
-            { name: "Fresh Banana", price: 5, image: "/banana.jpg" },
-            { name: "Fresh Avocado", price: 7, image: "/avocado.jpeg" },
-            { name: "Fresh Apple", price: 10, image: "/apple.jpg" },
-            { name: "Fresh Sugarcane", price: 5, image: "/cane.jpg" },
-            { name: "Fresh Berry", price: 7, image: "/bey.jpg" },
-        ],
-        "Non-Fresh Products": [
-            { name: "Rice Bag", price: 20, image: "/rice.webp" },
-            { name: "Canned Beans", price: 8, image: "/beans.jpg" },
-        ],
-        "HandCrafted Products": [
-            { name: "Handcrafted Vase", price: 30, image: "/vase.jpg" },
-            { name: "Handmade Basket", price: 25, image: "/basket.webp" },
-        ],
-        "Exports Products": [
-            { name: "Coffee Beans", price: 15, image: "/coffee.jpg" },
-            { name: "Cocoa Powder", price: 12, image: "/cocoa.jpg" },
-        ],
-    };
+    // const products: ProductCategories = {
+    //     "Fresh Products": [
+    //         { name: "Fresh Mango", price: 10, image: "/mango.webp" },
+    //         { name: "Fresh Banana", price: 5, image: "/banana.jpg" },
+    //         { name: "Fresh Avocado", price: 7, image: "/avocado.jpeg" },
+    //         { name: "Fresh Apple", price: 10, image: "/apple.jpg" },
+    //         { name: "Fresh Sugarcane", price: 5, image: "/cane.jpg" },
+    //         { name: "Fresh Berry", price: 7, image: "/bey.jpg" },
+    //     ],
+    //     "Non-Fresh Products": [
+    //         { name: "Rice Bag", price: 20, image: "/rice.webp" },
+    //         { name: "Canned Beans", price: 8, image: "/beans.jpg" },
+    //     ],
+    //     "HandCrafted Products": [
+    //         { name: "Handcrafted Vase", price: 30, image: "/vase.jpg" },
+    //         { name: "Handmade Basket", price: 25, image: "/basket.webp" },
+    //     ],
+    //     "Exports Products": [
+    //         { name: "Coffee Beans", price: 15, image: "/coffee.jpg" },
+    //         { name: "Cocoa Powder", price: 12, image: "/cocoa.jpg" },
+    //     ],
+    // };
 
     // Active product type state
     const [activeProductType, setActiveProductType] = useState<string>("Fresh Products");
@@ -124,10 +125,10 @@ export default function ProductPage() {
     };
 
     const productTypes = [
-        { title: "Fresh Products" },
-        { title: "Non-Fresh Products" },
-        { title: "HandCrafted Products" },
-        { title: "Exports Products" },
+        "Fresh Products",
+        "Non-Fresh Products",
+        "HandCrafted Products",
+        "Exports Products",
     ];
 
     const icon = [<FaCartShopping />];
@@ -164,6 +165,8 @@ export default function ProductPage() {
             return [...prevCart, { ...product, quantity: 1 }];
         });
     };
+    const baseURL = 'http://localhost:3000/uploads/';
+
 
     // Update product quantity in the cart
 
@@ -234,7 +237,7 @@ export default function ProductPage() {
                                 href="#"
                                 className="text-sm text-white hover:text-md"
                             >
-                                {item.title}
+                                {item}
                             </a>
                         ))}
                     </div>
@@ -302,42 +305,49 @@ export default function ProductPage() {
                 <h1 className="text-2xl font-bold text-gray-600">Our Products</h1>
 
                 {/* Product Type Selection */}
-                <div className="flex gap-5 ">
-                    {Object.keys(products).map((productType) => (
+                <div className="flex gap-5">
+                    {productTypes.map((item, index) => (
                         <button
-                            key={productType}
-                            onClick={() => setActiveProductType(productType)}
-                            className={`${activeProductType === productType
+                            key={index}
+                            onClick={() => setActiveProductType(item)}
+                            className={`${activeProductType === item
                                 ? "text-primary-color font-semibold"
                                 : "text-gray-600"
                                 } hover:text-primary-color`}
                         >
-                            {productType}
+                            {item}
                         </button>
                     ))}
                 </div>
-                <div className="mt-16 p-4">
-                    <h1 className="text-2xl font-bold mb-4">{activeProductType}</h1>
+
+                <div className="py-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {products[activeProductType]?.map((product, index) => (
-                            <div key={index} className="border p-4 rounded-lg">
-                                <img
-                                    src={product.image}
-                                    alt={product.name}
-                                    className="w-full h-40 object-cover rounded-md"
-                                />
-                                <h2 className="text-lg font-semibold mt-2">{product.name}</h2>
-                                <p className="text-sm text-gray-600">${product.price}</p>
-                                <button
-                                    onClick={() => addToCart(product)}
-                                    className="mt-4 bg-primary-color text-white px-4 py-2 rounded-md"
-                                >
-                                    Add to Cart
-                                </button>
-                            </div>
-                        ))}
+                        {product.filter((product) => product).length === 0 ? (
+                            <p className="text-center text-gray-600">No products available.</p>
+                        ) : (
+                            product
+
+                                .map((product, index) => (
+                                    <div key={index} className="border p-4 rounded-lg">
+                                        <img
+                                            src={`${baseURL}.${product.image}`}
+                                            alt={product.name}
+                                            className="w-full h-40 object-cover rounded-md"
+                                        />
+                                        <h2 className="text-lg font-semibold mt-2">{product.name}</h2>
+                                        <p className="text-sm text-gray-600">${product.price}</p>
+                                        <button
+                                            onClick={() => addToCart(product)}
+                                            className="mt-4 bg-primary-color text-white px-4 py-2 rounded-md"
+                                        >
+                                            Add to Cart
+                                        </button>
+                                    </div>
+                                ))
+                        )}
                     </div>
                 </div>
+
             </div>
         </div>
     );

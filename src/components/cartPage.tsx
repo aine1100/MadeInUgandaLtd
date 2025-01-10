@@ -63,6 +63,8 @@ export default function CartPage() {
         setAmount("");
         setCardInfo({ cardNumber: "", expiry: "", cvv: "" });
     };
+    const baseURL = 'http://localhost:3000/uploads/';
+
 
     return (
         <div className="p-10 flex flex-col gap-10">
@@ -82,7 +84,7 @@ export default function CartPage() {
                             className="flex items-center justify-between border p-4 rounded-lg"
                         >
                             <div className="flex items-center gap-4">
-                                <img src={product.image} alt={product.name} className="h-20" />
+                                <img src={`${baseURL}.${product.image}`} alt={product.name} className="h-20" />
                                 <div>
                                     <h2 className="font-bold">{product.name}</h2>
                                     <p>$:{product.price}</p>

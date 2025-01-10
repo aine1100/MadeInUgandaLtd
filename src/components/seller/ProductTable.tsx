@@ -192,7 +192,7 @@ const ProductTable: React.FC = () => {
           <Column body={imageTemplate} header="Image" />
         </DataTable>
          <div className='flex justify-end items-end p-3'>
-        <a href="/" className='text-primary-color text-md font-medium'>See more Products</a>
+        <a href="/" className={products.length ==0 ?`hidden `:`text-primary-color text-md font-medium`}>See more Products</a>
       </div>
 
       </div>

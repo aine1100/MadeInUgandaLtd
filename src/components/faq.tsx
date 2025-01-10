@@ -2,7 +2,7 @@ import FaqCard from "./faqCard"
 const FAQSection = () => {
   const faq=[
     {
-      description:"We do not Fee at any export",
+      description:"How much for  any export",
       icon:"+",
       explanation:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed libero felis, semper at turpis vel, pellentesque congue lectus. Integer vitae condimentum ipsum. Mauris vel convallis mauris."
     },

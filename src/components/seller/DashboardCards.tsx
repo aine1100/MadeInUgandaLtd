@@ -13,11 +13,11 @@ export default function ProductCards(){
         },
         {
             title:"Total Sales",
-            amount:500
+            amount:0
         },
         {
             title:"Total Income",
-            amount:500
+            amount:0
         }
     ]
     useEffect(() => {
