@@ -46,7 +46,7 @@ export default function PeopleNumber() {
 
     return (
         <div className="flex flex-col gap-10 items-center bg-primary-color px-10 py-10">
-            <div className="flex items-center gap-20">
+            <div className="flex flex-wrap items-center gap-20">
                 {numbers.map((number, index) => (
                     <div key={index} className="flex items-center">
                         {/* Content */}

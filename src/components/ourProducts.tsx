@@ -21,9 +21,9 @@ export default function OurProducts() {
         }
     ]
     return (
-        <div className="flex items-center justify-center gap-10 flex-col   px-10 py-10 container mx-auto">
+        <div className="flex  items-center justify-center gap-10 flex-col   px-10 py-10 container mx-auto">
             <h1 className="text-2xl font-bold text-gray-600">Our Products</h1>
-            <div className="flex gap-10 items-center justify-center">
+            <div className="flex flex-wrap gap-10 items-center justify-center">
             {products.map((item, index) => (
                         <div key={index} className="flex flex-col gap-5 w-[300px] h-[450px] shadow-sm shadow-gray-200 rounded-lg p-2">
                             <img src={item.image} alt="" className="w-full h-[150px] rounded-lg" />
